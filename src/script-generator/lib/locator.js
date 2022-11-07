@@ -1,8 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import deep from 'deep-extend';
-
-const child = require("child_process");
+import * as child from 'child_process';
 
 export default class Locator {
     constructor(options, DEFAULTS) {

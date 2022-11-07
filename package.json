@@ -1,7 +1,7 @@
 {
   "name": "webpack-msbuild-plugin",
-  "version": "1.0.15",
-  "description": "A webpack plugin to handle the automation of running msbuild scripts",
+  "version": "2.0.0",
+  "description": "A webpack plugin to handle the automation of running msbuild scripts. It uses vswhere to locate the appropriate msbuild. Microsoft is shipping vswhere from Visual Studio 2017",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,17 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shannonhochkins/webpack-msbuild-plugin.git"
+    "url": "git+https://github.com/azadar/webpack-msbuild-plugin.git"
   },
   "author": "Shannon hochkins",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shannonhochkins/webpack-msbuild-plugin/issues"
+    "url": "https://github.com/azadar/webpack-msbuild-plugin/issues"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "homepage": "https://github.com/shannonhochkins/webpack-msbuild-plugin#readme",
+  "homepage": "https://github.com/azadar/webpack-msbuild-plugin#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1"

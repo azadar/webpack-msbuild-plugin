@@ -1,8 +1,8 @@
 
 
 import os from 'os';
-const uuid = require('uuid');
-const join = require("path").join;
+import { v4 } from 'uuid';
+import { join } from 'path';
 
 export default {
   PLUGIN_NAME: 'webpack-msbuild',
@@ -46,7 +46,7 @@ export default {
     webPublishMethod: "FileSystem",
     deleteExistingFiles: "true",
     findDependencies: "true",
-    publishDirectory: join(os.tmpdir(), uuid.v4())
+    publishDirectory: join(os.tmpdir(), v4())
   }
 };
 
