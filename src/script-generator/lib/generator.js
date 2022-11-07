@@ -4,7 +4,7 @@ import path from 'path';
 
 export default class Generator extends Locator {
     constructor(options, DEFAULTS) {
-        super(options, DEFAULTS);     
+        super(options, DEFAULTS);
         // this.options is set by a subclass when it initiallises   
     }
 
@@ -21,8 +21,8 @@ export default class Generator extends Locator {
     generate(file, options) {
         if (!options || Object.keys(options).length <= 0) {
             if (this.options.onError) this.options.onError({
-                type : 'error',
-                msg : this.constants.PLUGIN_NAME + 'No options specified!'
+                type: 'error',
+                msg: this.constants.PLUGIN_NAME + 'No options specified!'
             });
             throw new Error(this.constants.PLUGIN_NAME + 'No options specified!');
         }
@@ -37,8 +37,8 @@ export default class Generator extends Locator {
             // only bother running these checks if the inbound value is a string.
             if (typeof value == 'string' && value.indexOf(this.template) > -1) {
                 if (this.options.onOutput) this.options.onOutput({
-                    type :'general',
-                    msg : `Replacing ${this.template} with ${file}`
+                    type: 'general',
+                    msg: `Replacing ${this.template} with ${file}`
                 });
                 this.newOptions.properties[prop] = value.replace(this.template, file);
             }
@@ -77,10 +77,13 @@ export default class Generator extends Locator {
         this.args = [];
         this.add('/target:' + options.targets.join(';'));
         this.add('/verbosity:' + options.verbosity);
-        this.add('/target:' + options.targets.join(';'));
         if (options.toolsVersion) {
             let version = parseFloat(options.toolsVersion).toFixed(1);
-            if (isNaN(version)) version = '4.0';
+            if (isNaN(version)) {
+                version = "4.0";
+            } else if (version > 15) {
+                version = "Current"; // msbuild 16.0 accepts this
+            }
             this.add('/toolsversion:' + version);
         }
         if (options.nologo) this.add('/nologo');

@@ -1,6 +1,8 @@
 
 
 import os from 'os';
+const uuid = require('uuid');
+const join = require("path").join;
 
 export default {
   PLUGIN_NAME: 'webpack-msbuild',
@@ -12,31 +14,49 @@ export default {
     4.0: 'v4.0.30319',
     12.0: '12.0',
     14.0: '14.0',
-    15.0: '15.0'
+    15.0: '15.0',
+    16.0: '16.0',
+    17.0: '17.0'
   },
   DEFAULTS: {
-    targets: ['Rebuild'],
-    configuration: 'Release',
-    toolsVersion: 14.0,
+    stdout: false,
+    stderr: true,
+    errorOnFail: false,
+    logCommand: false,
+    targets: ["Rebuild"],
+    configuration: "Release",
+    toolsVersion: 4.0,
     properties: {},
-    verbosity: 'normal',
+    verbosity: "normal",
     maxcpucount: 0,
     nologo: true,
     platform: process.platform,
     architecture: detectArchitecture(),
     windir: process.env.WINDIR,
-    msbuildPath: '',
+    msbuildPath: "",
     fileLoggerParameters: undefined,
     consoleLoggerParameters: undefined,
     loggerParameters: undefined,
     nodeReuse: true,
     customArgs: [],
-    solutionPlatform: null
+    emitEndEvent: false,
+    solutionPlatform: null,
+    emitPublishedFiles: false,
+    deployDefaultTarget: "WebPublish",
+    webPublishMethod: "FileSystem",
+    deleteExistingFiles: "true",
+    findDependencies: "true",
+    publishDirectory: join(os.tmpdir(), uuid.v4())
   }
 };
 
 function detectArchitecture() {
-  if (process.platform.match(/^win/)) return process.env.hasOwnProperty('ProgramFiles(x86)') ? 'x64' : 'x86';
-  return os.arch();
-}
+    if (process.platform.match(/^win/)) {
+      return process.env.hasOwnProperty("ProgramFiles(x86)") ? "x64" : "x86";
+    }
+  
+    return os.arch();
+  }
+  
+  
 
